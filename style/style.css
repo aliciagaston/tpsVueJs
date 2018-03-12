@@ -1,0 +1,35 @@
+* {
+    font-family: Arial;
+}
+
+li {
+    list-style-type : none;
+    margin-bottom: 1rem;
+}
+
+#list {
+    border: 1px solid black;
+    margin: 2rem;
+}
+
+button {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
+.date {
+    font-style: italic;
+}
+
+.date, .title {
+    display: inline-block;
+}
+
+.title {
+    font-size: larger;
+}
+
+.details {
+    font-style: italic;
+}
