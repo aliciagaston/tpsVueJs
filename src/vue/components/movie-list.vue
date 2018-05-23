@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <div class="search-wrapper">
-      <input type="text" v-model="search" placeholder="Search title.."/>
+      <input type="text" class="search-bar" v-model="search" placeholder="Search title.."/>
     </div>
     <h1>Movies</h1>
+    <div>Nombre de films : {{nbMovies}}</div>
     <div class="list">
       <movie-item v-for="(movie, index) in filteredList"
                   v-bind:movie="movie"
@@ -11,17 +12,20 @@
     </div>
 
 
-    <div id="formCreate">
-      <h2>Nouveau film : </h2>
-      <span>Titre : </span><input type="text" v-model="newMovie.title"/> <br/>
-      <span>Date de sortie: </span><input type="text" v-model="newMovie.date"/> <br/>
-      <span>Réalisateur : </span><input type="text" v-model="newMovie.real"/> <br/>
-      <span>Synopsis : </span><input type="text" v-model="newMovie.synopsis"/> <br/>
-      <button v-on:click="addMovie"><span class="fa fa-plus-square"/></button>
+    <div id="formCreate" class="card-panel">
+      <h2>Add a movie : </h2>
+      <span>Titre : </span><input type="text" placeholder="..." v-model="newMovie.title"/> <br/>
+      <span>Date de sortie: </span><input type="text" placeholder="..." v-model="newMovie.date"/> <br/>
+      <span>Réalisateur : </span><input type="text" placeholder="..." v-model="newMovie.real"/> <br/>
+      <span>Synopsis : </span><input type="text" placeholder="..."  v-model="newMovie.synopsis"/> <br/>
+      <button id="submit" class="btn waves-effect waves-light" type="submit" name="action" v-on:click="addMovie">
+        <i class="material-icons right">send</i>
+        Submit
+      </button>
       <br/>
     </div>
 
-    <div>Nombre de films : {{nbMovies}}</div>
+
   </div>
 </template>
 

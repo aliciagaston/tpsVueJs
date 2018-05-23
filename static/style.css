@@ -4,3 +4,68 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+body {
+    background-color: Gainsboro;
+}
+
+
+.card-action {
+  background-color: #152e4e !important;
+}
+
+.card {
+  width: 200px;
+}
+
+.card .card-image {
+  max-height: 170px;
+}
+
+.card .card-image img {
+  border-radius: 0 0 0 0 !important;
+}
+
+.card .card-content .card-title {
+  max-height: 60px;
+  overflow: hidden;
+  font-size: 22px;
+}
+
+.card .card-reveal .card-title {
+  font-size: 22px;
+}
+
+.card .card-action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
+  color: lightgrey !important;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: white !important;
+  cursor: pointer;
+}
+
+h1, h2 {
+  color: #152e4e;
+}
+
+.search-bar:focus, #formCreate input:focus {
+  border-bottom: 1px solid #152e4e !important;
+  -webkit-box-shadow: 0 1px 0 0 #152e4e !important;
+  box-shadow: 0 1px 0 0 #152e4e !important;
+}
+
+#submit {
+  background-color: #152e4e;
+}
+
+#submit:hover {
+  background-color: #1e406b;
+}
+
+

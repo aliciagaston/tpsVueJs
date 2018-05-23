@@ -30,18 +30,31 @@ export default new Vuex.Store({
         img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg/220px-Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg'
       }]
   },
+  getters: {
+    getMovie: (state) => (id) => {
+     return state.movies.find(function(movie){return movie.id === Number(id);});
+    }
+  },
+
   mutations: {
     addMovie(state, movie) {
+      movie.id = state.currentIndex+1;
+      state.currentIndex++;
       state.movies.push(movie);
     },
     deleteMovie(state, id){
-      console.log("id", id);
       var index = state.movies.findIndex((movie)=> {
         return movie.id === id;
       });
-      console.log("index", index);
       state.movies.splice(index,1);
+    },
+    editMovie(state, myMovie){
+      var index = state.movies.findIndex((movie)=> {
+        return movie.id === myMovie.id;
+      });
+      state.movies[index] = myMovie;
     }
+
   },
 
   actions: {
@@ -50,6 +63,10 @@ export default new Vuex.Store({
     },
     deleteMovie(context, index) {
       context.commit('deleteMovie', index);
+    },
+    editMovie(context, movie)  {
+      console.log('pass');
+      context.commit('editMovie', movie);
     }
   }
 });
