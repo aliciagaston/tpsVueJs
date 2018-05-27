@@ -1,22 +1,12 @@
 const cors    = require('cors');
 const data    = require('./data');
-const multer  = require('multer');
 const express = require('express');
-const upload  = multer({ dest: './src/static/poster/' });
-const path    = require('path');
 const router  = express();
-
-
-/*"audit": "0.0.6",
- "bower": "^1.8.2",
- "file-system": "^2.2.2",
- "vuetify": "^1.0.13",*/
 
 
 router.use(cors());
 router.use(express.json());
 router.use(express.urlencoded());
-router.use('/static', express.static(path.join(__dirname + '/../static')));
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -53,6 +43,7 @@ router.put('/api/movies/delete/:id', (req, res) => {
 });
 
 router.post('/api/movies', (req, res)=> {
+  console.log(req.body);
   data.currentId ++;
   var id = data.currentId;
   var movie = req.body;

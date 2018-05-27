@@ -1,5 +1,4 @@
 <template>
-
   <div class="card" v-on:click="detail">
     <div class="card-image">
       <img :src='movie.img'>
@@ -16,11 +15,6 @@
 
   export default {
     props: ["movie"],
-    data: function () {
-      return {
-        showDetails: false
-      }
-    },
     methods: {
       detail() {
         this.$router.push({ path: `/movie/${this.movie.id}` });

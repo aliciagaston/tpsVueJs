@@ -24,7 +24,7 @@
         <label>Filmmarker's birthdate : </label><input type="date" placeholder="..." v-model="newMovie.real.birthDate"/> <br/>
         <label>Filmmarker's nationality : </label><input type="text" placeholder="..." v-model="newMovie.real.nationality"/> <br/>
         <label>Plot : </label><input type="text" placeholder="..."  v-model="newMovie.plot"/> <br/>
-        <label>Poster : </label><input name="file" type="file" id="file" ref="img"/><br/>
+        <label>Poster : </label><input type="text" placeholder="..."  v-model="newMovie.img"/><br/>
 
         <label>Evaluate : </label><select v-model="newMovie.mark">
         <option>1</option>
@@ -76,19 +76,6 @@
     methods: {
       addMovie: function () {
         this.$store.dispatch('addMovieFromAPI', this.newMovie);
-        this.newMovie = {
-          title: '',
-          date: '',
-          genre: '',
-          language: '',
-          real: {
-            name: '',
-            birthDate: '',
-            nationality: '',
-          },
-          plot: '',
-          img: ''
-        };
       },
     },
     computed: {
