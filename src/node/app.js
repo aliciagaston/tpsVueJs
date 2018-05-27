@@ -1,11 +1,7 @@
-const express = require('express')
-const bodyParser = require('body-parser');
-
+const express    = require('express');
+const routes = require('./route');
 const app = express();
-app.use(bodyParser.json()); //parse JSON body
-app.use(bodyParser.urlencoded()); //parse x-www-form-urlencoded body
+const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'));
-app.post('/foo', (req,res)=> {console.log(req); res.json(req.body)});
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.use('/', routes);
+app.listen(port, () => console.log('node server listening on port ' + port.toString()));

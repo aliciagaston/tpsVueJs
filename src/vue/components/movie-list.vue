@@ -1,10 +1,11 @@
 <template>
   <div class="container">
+    <div class="title"><h1>My Movies Collection</h1></div>
+
     <div class="search-wrapper">
-      <input type="text" class="search-bar" v-model="search" placeholder="Search title.."/>
+      <input type="text" class="search-bar" v-model="search" placeholder="Search..."/>
     </div>
-    <h1>Movies</h1>
-    <div>Nombre de films : {{nbMovies}}</div>
+    <div id="nb-movies">{{nbMovies}}</div>
     <div class="list">
       <movie-item v-for="(movie, index) in filteredList"
                   v-bind:movie="movie"
@@ -12,17 +13,32 @@
     </div>
 
 
-    <div id="formCreate" class="card-panel">
-      <h2>Add a movie : </h2>
-      <span>Titre : </span><input type="text" placeholder="..." v-model="newMovie.title"/> <br/>
-      <span>Date de sortie: </span><input type="text" placeholder="..." v-model="newMovie.date"/> <br/>
-      <span>Réalisateur : </span><input type="text" placeholder="..." v-model="newMovie.real"/> <br/>
-      <span>Synopsis : </span><input type="text" placeholder="..."  v-model="newMovie.synopsis"/> <br/>
-      <button id="submit" class="btn waves-effect waves-light" type="submit" name="action" v-on:click="addMovie">
-        <i class="material-icons right">send</i>
-        Submit
-      </button>
-      <br/>
+    <div id="formCreate">
+      <div class="form">
+        <h2>Add a movie : </h2>
+        <label>Title : </label><input type="text" placeholder="Title..." v-model="newMovie.title"/> <br/>
+        <label>Release date : </label><input type="date" placeholder="Date..." v-model="newMovie.date"/> <br/>
+        <label>Language : </label><input type="text" placeholder="..." v-model="newMovie.language"/> <br/>
+        <label>Genre : </label><input type="text" placeholder="..." v-model="newMovie.genre"/> <br/>
+        <label>Filmmarker's name : </label><input type="text" placeholder="..." v-model="newMovie.real.name"/> <br/>
+        <label>Filmmarker's birthdate : </label><input type="date" placeholder="..." v-model="newMovie.real.birthDate"/> <br/>
+        <label>Filmmarker's nationality : </label><input type="text" placeholder="..." v-model="newMovie.real.nationality"/> <br/>
+        <label>Plot : </label><input type="text" placeholder="..."  v-model="newMovie.plot"/> <br/>
+        <label>Poster : </label><input name="file" type="file" id="file" ref="img"/><br/>
+
+        <label>Evaluate : </label><select v-model="newMovie.mark">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select><br/>
+        <button id="submit" type="submit" name="action" v-on:click="addMovie">
+          <i class="fas fa-chevron-circle-right"/>
+          Add
+        </button>
+        <br/>
+      </div>
     </div>
 
 
@@ -39,39 +55,58 @@
         newMovie: {
           title: '',
           date: '',
-          real: '',
-          synopsis: '',
-          showDetails: false
+          genre: '',
+          language: '',
+          real: {
+            name: '',
+            birthDate: '',
+            nationality: '',
+          },
+          plot: '',
+          img: '',
+          mark: 1
         },
-        search: ''
+        movies: [],
+        search: '',
       }
+    },
+    created : function() {
+      this.movies = this.$store.dispatch('getMoviesFromAPI');
     },
     methods: {
       addMovie: function () {
-        this.newMovie.showDetails = false;
-        this.$store.dispatch('addMovie', this.newMovie);
+        this.$store.dispatch('addMovieFromAPI', this.newMovie);
         this.newMovie = {
           title: '',
           date: '',
-          real: '',
-          synopsis: '',
-          showDetails: false
+          genre: '',
+          language: '',
+          real: {
+            name: '',
+            birthDate: '',
+            nationality: '',
+          },
+          plot: '',
+          img: ''
         };
       },
     },
     computed: {
-      movies() {
-        return this.$store.state.movies;
-      },
       nbMovies: function () {
         return this.movies.length;
       },
       filteredList() {
-        return this.movies.filter(movie => {
+        return this.$store.state.movies.filter(movie => {
+          var matchedRealBirth = movie.real.birthDate.toLowerCase().includes(this.search.toLowerCase());
+          var matchedRealNationality = movie.real.nationality.toLowerCase().includes(this.search.toLowerCase());
+          var matchedLanguage = movie.language.toLowerCase().includes(this.search.toLowerCase());
+          var matchedPlot = movie.plot.toLowerCase().includes(this.search.toLowerCase());
+          var matchedGenre = movie.genre.toLowerCase().includes(this.search.toLowerCase());
           var matchedTitle = movie.title.toLowerCase().includes(this.search.toLowerCase());
           var matchedDate = movie.date.toLowerCase().includes(this.search.toLowerCase());
-          var matchedReal = movie.real.toLowerCase().includes(this.search.toLowerCase());
-          return matchedTitle + matchedDate + matchedReal;
+          var matchedRealName = movie.real.name.toLowerCase().includes(this.search.toLowerCase());
+
+          return matchedTitle + matchedDate + matchedRealName + matchedRealBirth + matchedGenre + matchedPlot + matchedRealNationality + matchedLanguage;
         })
       }
     }

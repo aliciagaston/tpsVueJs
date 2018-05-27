@@ -1,71 +1,103 @@
+body, html, .container {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Arial;
+}
+h1 {
+  width: 100%;
+  text-align: center;
+  color: white ;
+  font-weight: normal;
+}
+
+.title {
+  background-color: rgb(51,95,165);
+  width: 100vw;
+  display: table-cell;
+  vertical-align: middle;
+  height: 4rem;
+  margin-top:0;
+  padding-top: 0;
+}
+.search-wrapper input {
+  width: 80vw;
+  border: 1px solid rgb(51,95,165);
+  height: 2rem;
+  padding: 0 1rem;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
 .list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-body {
-    background-color: Gainsboro;
-}
-
-
-.card-action {
-  background-color: #152e4e !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: flex-start;
 }
 
 .card {
-  width: 200px;
+  width: 150px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
-.card .card-image {
-  max-height: 170px;
-}
-
-.card .card-image img {
-  border-radius: 0 0 0 0 !important;
-}
-
-.card .card-content .card-title {
-  max-height: 60px;
-  overflow: hidden;
-  font-size: 22px;
-}
-
-.card .card-reveal .card-title {
-  font-size: 22px;
-}
-
-.card .card-action {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
-  color: lightgrey !important;
-}
-
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
-  color: white !important;
+.card:hover {
   cursor: pointer;
 }
-
-h1, h2 {
-  color: #152e4e;
+.card-image img {
+  width: 150px;
+  height: 200px;
 }
 
-.search-bar:focus, #formCreate input:focus {
-  border-bottom: 1px solid #152e4e !important;
-  -webkit-box-shadow: 0 1px 0 0 #152e4e !important;
-  box-shadow: 0 1px 0 0 #152e4e !important;
+.card-title {
+  font-weight: bold;
+  font-size: 12px;
 }
 
-#submit {
-  background-color: #152e4e;
+.card-title:hover {
+  color: rgb(51,95,165);
 }
 
-#submit:hover {
-  background-color: #1e406b;
+.card-content p {
+  font-size: 12px;
+  color: darkgrey;
 }
 
+#formCreate {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
 
+.form {
+  padding: 0 1rem;
+  background-color: lightgrey;
+}
+
+.form input {
+  border: 1px solid rgb(51,95,165);
+  margin: 0.7rem;
+  height: 2rem;
+  padding: 0.2rem 0.8rem;
+}
+.form label, .form #file {
+  margin: 0.7rem;
+  border: 0 solid black;
+}
+
+.form button {
+  margin: 1rem;
+  height: 2rem;
+  width: 4rem;
+}
+
+#formEdit {
+  margin-top: 2rem;
+}

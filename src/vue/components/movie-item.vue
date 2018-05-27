@@ -1,17 +1,13 @@
 <template>
 
-  <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" style="height: 200px" :src='movie.img'>
+  <div class="card" v-on:click="detail">
+    <div class="card-image">
+      <img :src='movie.img'>
     </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">
+      <span class="card-title">
         {{ movie.title }}</span>
-      <p>{{movie.date}}</p>
-    </div>
-    <div class="card-action">
-      <a v-on:click="detail">Détails</a>
-      <a v-on:click="edit">Editer</a>
+      <p>{{movie.real.name}}</p>
     </div>
   </div>
 </template>
@@ -26,12 +22,6 @@
       }
     },
     methods: {
-      edit() {
-        this.$router.push({path: `/movie/${this.movie.id}/edit`})
-      },
-      remove() {
-        this.$store.dispatch('deleteMovie', this.movie.id);
-      },
       detail() {
         this.$router.push({ path: `/movie/${this.movie.id}` });
       }
